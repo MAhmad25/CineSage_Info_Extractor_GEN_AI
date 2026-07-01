@@ -105,7 +105,6 @@ export default function App() {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({ paragraph: trimmed }),
                   });
-
                   if (!res.ok) {
                         const data = await res.json().catch(() => ({}));
                         const errorMessage = data.detail || `Request failed (${res.status})`;
@@ -141,9 +140,7 @@ export default function App() {
                         <h1 className="page-title">Movie Info Extractor</h1>
                         <section className="prompt-area" aria-label="Movie paragraph input">
                               <AIInput placeholder="Past your raw paragraph" onSubmit={extract} disabled={loading} className="py-0" />
-                              <div className="actions">
-                                    {loading && <ShiningText text="Extracting movie details..." />}
-                              </div>
+                              <div className="actions">{loading && <ShiningText text="Extracting movie details..." />}</div>
                         </section>
 
                         {error && <ErrorCard message={error} />}
