@@ -87,7 +87,9 @@ The model is instructed to extract only information explicitly present in the in
 
 ## Production Build
 
-Build the frontend:
+The app will attempt to build the frontend automatically on startup if `frontend/dist` is missing.
+
+If you want to build it manually:
 
 ```bash
 cd frontend

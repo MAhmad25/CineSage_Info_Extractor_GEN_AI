@@ -1,6 +1,11 @@
+import subprocess
+import sys
+from pathlib import Path
 from typing import List, Optional
+
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_google_genai import ChatGoogleGenerativeAI
 from pydantic import BaseModel
@@ -25,7 +30,28 @@ class ExtractRequest(BaseModel):
     paragraph: str
 
 
+ROOT_DIR = Path(__file__).resolve().parent
+FRONTEND_DIST = ROOT_DIR / "frontend" / "dist"
+FRONTEND_INDEX = FRONTEND_DIST / "index.html"
+
 app = FastAPI(title="Movie Extractor API")
+
+
+def ensure_frontend_build() -> None:
+    if FRONTEND_INDEX.exists():
+        return
+
+    script_path = ROOT_DIR / "scripts" / "build_frontend.py"
+    if not script_path.exists():
+        return
+
+    try:
+        subprocess.run([sys.executable, str(script_path)], check=True)
+    except subprocess.CalledProcessError:
+        return
+
+
+ensure_frontend_build()
 
 model = ChatGoogleGenerativeAI(model="gemini-2.5-flash-lite", temperature=0)
 structured_model = model.with_structured_output(Movie)
@@ -52,4 +78,6 @@ def extract_movie(req: ExtractRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-app.frontend("/", directory="frontend/dist")
+if FRONTEND_INDEX.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIST),
+              html=True), name="frontend")
