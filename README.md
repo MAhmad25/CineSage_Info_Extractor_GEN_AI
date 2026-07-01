@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-# Movie Info Extractor
+# CineSage | Movie Info Extractor
+
+<img src="https://i.ibb.co/pvJPBgcL/64-1x-shots-so.png" alt="64 1x shots so" border="0">
 
 Extract structured movie data from a paragraph.
 
