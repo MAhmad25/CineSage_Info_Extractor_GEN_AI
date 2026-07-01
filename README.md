@@ -2,7 +2,25 @@
 
 <img src="https://i.ibb.co/pvJPBgcL/64-1x-shots-so.png" alt="64 1x shots so" border="0">
 
-Extract structured movie data from a paragraph.
+## Problem Statement
+
+CineSage is a movie storage company that receives raw movie information paragraphs from movie providers and companies. The challenge was that their team had to manually extract and enter this information into the database by:
+
+- Reading and understanding unstructured paragraphs
+- Making internal tool API calls
+- Explicitly analyzing useful information
+- Manually filling database fields with extracted data
+
+This manual process was time-consuming, error-prone, and inefficient.
+
+## Solution
+
+I built an LLM-powered Movie Info Extractor that automates the entire extraction process. The system:
+
+- Takes raw movie information paragraphs as input
+- Uses Google Gemini AI to intelligently extract structured data
+- Returns a ready-to-use JSON output that can be directly inserted into the database
+- Eliminates the need for manual data entry and analysis
 
 The backend uses FastAPI and Gemini through `langchain-google-genai`. The frontend is a Vite React app.
 

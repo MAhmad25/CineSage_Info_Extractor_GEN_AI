@@ -17,6 +17,17 @@ function MetaItem({ label, value }) {
       );
 }
 
+function ErrorCard({ message }) {
+      return (
+            <section className="card error-card">
+                  <div className="error-head">
+                        <h2>Error</h2>
+                  </div>
+                  <p className="error-message">{message}</p>
+            </section>
+      );
+}
+
 function MovieResult({ movie }) {
       return (
             <section className="card result">
@@ -97,7 +108,23 @@ export default function App() {
 
                   if (!res.ok) {
                         const data = await res.json().catch(() => ({}));
-                        throw new Error(data.detail || `Request failed (${res.status})`);
+                        const errorMessage = data.detail || `Request failed (${res.status})`;
+
+                        // Parse quota errors for better display
+                        if (errorMessage.includes("RESOURCE_EXHAUSTED") || errorMessage.includes("quota")) {
+                              const quotaMatch = errorMessage.match(/limit: (\d+)/);
+                              const retryMatch = errorMessage.match(/Please retry in ([\d.]+)s/);
+                              const limit = quotaMatch ? quotaMatch[1] : "your";
+                              const retryTime = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) : null;
+
+                              let formattedError = `API quota exceeded (limit: ${limit} requests/day).`;
+                              if (retryTime) {
+                                    formattedError += ` Please retry in ${retryTime} seconds.`;
+                              }
+                              throw new Error(formattedError);
+                        }
+
+                        throw new Error(errorMessage);
                   }
 
                   setMovie(await res.json());
@@ -116,10 +143,10 @@ export default function App() {
                               <AIInput placeholder="Past your raw paragraph" onSubmit={extract} disabled={loading} className="py-0" />
                               <div className="actions">
                                     {loading && <ShiningText text="Extracting movie details..." />}
-                                    {error && <span className="error">{error}</span>}
                               </div>
                         </section>
 
+                        {error && <ErrorCard message={error} />}
                         {movie && <MovieResult movie={movie} />}
                   </main>
             </>
