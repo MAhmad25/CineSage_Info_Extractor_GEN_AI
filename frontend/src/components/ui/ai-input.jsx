@@ -47,9 +47,8 @@ export function AIInput({ id = "ai-input", placeholder = "Type your message...",
                                     }
                               }}
                         />
-                       
 
-                        <button onClick={handleSubmit} type="button" disabled={disabled} className={cn("submit-button absolute top-1/2 -translate-y-1/2 right-3", "rounded-xl py-1 px-1", "transition-all duration-200", "disabled:opacity-40 disabled:pointer-events-none", inputValue ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}>
+                        <button onClick={handleSubmit} type="button" disabled={disabled} className={cn("submit-button absolute bottom-3 right-3", "rounded-xl py-1 px-1", "transition-all duration-200", "disabled:opacity-40 disabled:pointer-events-none", inputValue ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none")}>
                               <CornerRightUp className="w-4 h-4" />
                         </button>
                   </div>

@@ -1,5 +1,6 @@
 fastapi[standard]>=0.121.0
-langchain-core
-langchain-google-genai
-pydantic
-python-dotenv
+uvicorn>=0.49.0
+langchain-core>=0.3.0
+langchain-google-genai>=2.0.0
+pydantic>=2.8.0
+python-dotenv>=1.0.0
