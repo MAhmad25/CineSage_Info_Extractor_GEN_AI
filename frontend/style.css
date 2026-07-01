@@ -1,0 +1,299 @@
+@import "tailwindcss";
+
+:root {
+      --page: #ffffff;
+      --surface: #f4f4f4;
+      --surface-strong: #ededed;
+      --ink: #171717;
+      --ink-soft: #747474;
+      --line: #d8d8d8;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --mono: "JetBrains Mono", monospace;
+      --sans: "Inter", system-ui, sans-serif;
+}
+
+* {
+      box-sizing: border-box;
+}
+
+html {
+      background: var(--page);
+}
+
+body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--ink);
+      font-family: var(--sans);
+      overflow-x: hidden;
+}
+
+button,
+textarea {
+      font: inherit;
+}
+
+.page {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      padding: 92px 24px 72px;
+}
+
+.sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      color: var(--ink);
+      border: 0;
+}
+
+.page-title {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: 30px;
+      line-height: 1.15;
+      font-weight: 600;
+      text-align: center;
+}
+
+.prompt-area {
+      width: min(100%, 616px);
+}
+
+.prompt-input {
+      width: 100%;
+}
+
+.prompt-textarea {
+      width: 100%;
+      border: 0;
+      outline: none;
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.01);
+      font-size: 15px;
+      line-height: 1.45;
+      padding-top: 17px;
+      padding-bottom: 17px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+}
+
+.prompt-textarea::placeholder {
+      color: var(--ink-soft);
+}
+
+.prompt-textarea::-webkit-scrollbar {
+      display: none;
+}
+
+.prompt-textarea:focus {
+      background: var(--surface-strong);
+}
+
+.prompt-textarea:disabled {
+      cursor: wait;
+      opacity: 0.75;
+}
+
+.mic-button,
+.submit-button {
+      width: 38px;
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 999px;
+      background: #e1e1e1;
+      color: var(--ink);
+}
+
+.submit-button {
+      cursor: pointer;
+}
+
+.mic-button svg,
+.submit-button svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 2.2;
+}
+
+.actions {
+      min-height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      color: var(--ink-soft);
+      font-size: 14px;
+}
+
+.error {
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 13px;
+}
+
+.card {
+      width: min(100%, 616px);
+      background: var(--page);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: 0 22px 44px var(--shadow);
+}
+
+.result {
+      margin-top: 4px;
+}
+
+.result-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+}
+
+.result-head h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.2;
+      font-weight: 600;
+}
+
+.rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 5px 9px;
+      font-family: var(--mono);
+      font-size: 13px;
+      white-space: nowrap;
+}
+
+.description {
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 20px;
+}
+
+.meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+}
+
+.meta-item {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+}
+
+.meta-item .k,
+.chip-label,
+.raw-json summary {
+      display: block;
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+}
+
+.meta-item .k {
+      margin-bottom: 4px;
+}
+
+.meta-item .v {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 500;
+}
+
+.chip-row {
+      margin-bottom: 12px;
+}
+
+.chip-row:last-child {
+      margin-bottom: 0;
+}
+
+.chip-label {
+      margin-bottom: 8px;
+}
+
+.chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+}
+
+.chip {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      font-size: 12px;
+      padding: 5px 12px;
+}
+
+.raw-json {
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+}
+
+.raw-json summary {
+      cursor: pointer;
+}
+
+.raw-json pre {
+      margin-top: 12px;
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.55;
+      padding: 14px;
+}
+
+@media (max-width: 700px) {
+      .page {
+            padding: 90px 18px 52px;
+      }
+
+      .prompt-textarea {
+            font-size: 14px;
+            padding-top: 16px;
+            padding-bottom: 16px;
+      }
+
+      .page-title {
+            font-size: 24px;
+      }
+}
