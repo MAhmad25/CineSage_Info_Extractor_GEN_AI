@@ -1,6 +1,6 @@
 # Movie Info Extractor
 
-Extract structured movie data from a paragraph.
+Extract structured movie data from a paragraph
 
 The backend uses FastAPI and Gemini through `langchain-google-genai`. The frontend is a Vite React app.
 
