@@ -92,4 +92,5 @@ def extract_movie(req: ExtractRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-app.frontend("/", directory="frontend/dist")
+if FRONTEND_DIST.exists():
+    app.frontend("/", directory="frontend/dist")
