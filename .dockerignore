@@ -1,0 +1,6 @@
+.venv
+__pycache__
+.fastapicloud
+.git
+.gitignore
+README.md
