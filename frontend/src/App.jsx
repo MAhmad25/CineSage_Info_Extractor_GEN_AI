@@ -137,6 +137,7 @@ export default function App() {
       return (
             <>
                   <main className="page">
+                        <img src="/logo.svg" alt="logo" className="w-7 h-7 object-cover" />
                         <h1 className="page-title">CineSage</h1>
                         <p className="tagline">Extract structured movie information from unstructured paragraphs</p>
                         <section className="prompt-area" aria-label="Movie paragraph input">
