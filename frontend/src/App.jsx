@@ -137,7 +137,8 @@ export default function App() {
       return (
             <>
                   <main className="page">
-                        <h1 className="page-title">Movie Info Extractor</h1>
+                        <h1 className="page-title">CineSage</h1>
+                        <p className="tagline">Extract structured movie information from unstructured paragraphs</p>
                         <section className="prompt-area" aria-label="Movie paragraph input">
                               <AIInput placeholder="Past your raw paragraph" onSubmit={extract} disabled={loading} className="py-0" />
                               <div className="actions">{loading && <ShiningText text="Extracting movie details..." />}</div>

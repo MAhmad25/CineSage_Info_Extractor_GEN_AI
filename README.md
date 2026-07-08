@@ -116,8 +116,8 @@ cd frontend
 npm run build
 ```
 
-The generated files are written to `frontend/dist`.
-=======
+# The generated files are written to `frontend/dist`.
+
 # Movie Info Extractor
 
 Extract structured movie data from a paragraph
@@ -215,4 +215,5 @@ npm run build
 ```
 
 The generated files are written to `frontend/dist`.
->>>>>>> f8fb2d9a216fb5fd4059576454b534676a56baa4
+
+> > > > > > > f8fb2d9a216fb5fd4059576454b534676a56baa4
